@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Keynetics — Beginner Tutorials</title>
+<link rel="stylesheet" href="styles.css" />
+
+<style>
+
+
+
+.tutorial-page{
+max-width:1100px;
+margin:0 auto;
+padding:40px 16px 80px;
+}
+
+/* HEADER */
+
+.tutorial-header{
+width:min(900px,100%);
+margin:0 auto 28px;
+border:1px solid var(--line);
+background:var(--panel);
+border-radius:var(--radius);
+padding:40px;
+}
+
+.tutorial-header h1{
+margin:0 0 12px;
+font-size:clamp(32px,4vw,46px);
+}
+
+.tutorial-header p{
+margin:0;
+color:var(--muted);
+font-size:16px;
+}
+
+/* GRID */
+
+.video-grid{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:16px;
+}
+
+
+
+.video-card{
+aspect-ratio:1/1;
+background:#f2f2f2;
+border:1px solid #dcdcdc;
+border-radius:16px;
+position:relative;
+overflow:hidden;
+}
+
+/* X Icon */
+
+.video-card::before,
+.video-card::after{
+content:"";
+position:absolute;
+top:50%;
+left:50%;
+width:100%;
+height:2px;
+background:#cfcfcf;
+opacity:.6;
+}
+
+.video-card::before{
+transform:translate(-50%,-50%) rotate(45deg);
+}
+
+.video-card::after{
+transform:translate(-50%,-50%) rotate(-45deg);
+}
+
+
+
+.video-label{
+position:absolute;
+left:10px;
+bottom:10px;
+font-size:12px;
+color:#666;
+background:#ffffffcc;
+border:1px solid #ddd;
+padding:3px 7px;
+border-radius:999px;
+}
+
+/* MENU ICONS  */
+
+.nav-with-icon{
+display:flex;
+align-items:center;
+gap:8px;
+}
+
+.nav-icon{
+width:9px !important;
+height:9px !important;
+min-width:9px !important;
+min-height:9px !important;
+max-width:9px !important;
+max-height:9px !important;
+object-fit:contain;
+flex:0 0 9px !important;
+display:block;
+opacity:.75;
+transform:translateY(1px);
+}
+
+.nav-icon-spacer{
+width:9px;
+height:9px;
+flex:0 0 9px;
+display:block;
+}
+
+
+
+.hamburger{
+padding:0;
+}
+
+.hamburger__icon{
+font-size:18px;
+line-height:1;
+transform:translateY(-1px);
+display:block;
+}
+
+
+
+@media(max-width:900px){
+
+.video-grid{
+grid-template-columns:repeat(3,1fr);
+}
+
+}
+
+@media(max-width:600px){
+
+.video-grid{
+grid-template-columns:repeat(2,1fr);
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="overlay" id="overlay" hidden></div>
+
+<aside class="sidebar" id="sidebar">
+
+<div class="sidebar__top">
+<strong>MENU</strong>
+<button class="closebtn" id="closeMenu">×</button>
+</div>
+
+<nav>
+
+<ul class="navlist">
+
+<li>
+<a href="index.html">
+<span class="nav-icon-spacer"></span>
+<span>Home</span>
+</a>
+</li>
+
+<li>
+<a href="tutorials.html" class="nav-with-icon">
+<img src="1.svg" class="nav-icon">
+<span>After Effects Tutorials</span>
+</a>
+</li>
+
+<li>
+<a href="plugins.html" class="nav-with-icon">
+<img src="2.svg" class="nav-icon">
+<span>Useful Plugins/Scripts</span>
+</a>
+</li>
+
+<li>
+<a href="quiz.html" class="nav-with-icon">
+<img src="3.svg" class="nav-icon">
+<span>Quiz</span>
+</a>
+</li>
+
+<li>
+<a href="artists.html" class="nav-with-icon">
+<img src="4.svg" class="nav-icon">
+<span>Motion Graphics Artists/Company</span>
+</a>
+</li>
+
+</ul>
+
+</nav>
+
+</aside>
+
+<header class="topbar">
+
+<div class="topbar__inner">
+
+<button class="hamburger" id="openMenu">
+<span class="hamburger__icon">☰</span>
+</button>
+
+<div class="brand">
+<strong>Keynetics</strong>
+</div>
+
+</div>
+
+</header>
+
+<main class="tutorial-page">
+
+<section class="tutorial-header">
+
+<h1>Beginner Tutorials</h1>
+
+<p>
+These squares will be replaced with real tutorial videos later.
+</p>
+
+</section>
+
+<section class="video-grid">
+
+<div class="video-card"><span class="video-label">01</span></div>
+<div class="video-card"><span class="video-label">02</span></div>
+<div class="video-card"><span class="video-label">03</span></div>
+<div class="video-card"><span class="video-label">04</span></div>
+
+<div class="video-card"><span class="video-label">05</span></div>
+<div class="video-card"><span class="video-label">06</span></div>
+<div class="video-card"><span class="video-label">07</span></div>
+<div class="video-card"><span class="video-label">08</span></div>
+
+<div class="video-card"><span class="video-label">09</span></div>
+<div class="video-card"><span class="video-label">10</span></div>
+<div class="video-card"><span class="video-label">11</span></div>
+<div class="video-card"><span class="video-label">12</span></div>
+
+<div class="video-card"><span class="video-label">13</span></div>
+<div class="video-card"><span class="video-label">14</span></div>
+<div class="video-card"><span class="video-label">15</span></div>
+<div class="video-card"><span class="video-label">16</span></div>
+
+<div class="video-card"><span class="video-label">17</span></div>
+<div class="video-card"><span class="video-label">18</span></div>
+<div class="video-card"><span class="video-label">19</span></div>
+<div class="video-card"><span class="video-label">20</span></div>
+
+<div class="video-card"><span class="video-label">21</span></div>
+<div class="video-card"><span class="video-label">22</span></div>
+<div class="video-card"><span class="video-label">23</span></div>
+<div class="video-card"><span class="video-label">24</span></div>
+
+<div class="video-card"><span class="video-label">25</span></div>
+<div class="video-card"><span class="video-label">26</span></div>
+<div class="video-card"><span class="video-label">27</span></div>
+<div class="video-card"><span class="video-label">28</span></div>
+
+<div class="video-card"><span class="video-label">29</span></div>
+<div class="video-card"><span class="video-label">30</span></div>
+<div class="video-card"><span class="video-label">31</span></div>
+<div class="video-card"><span class="video-label">32</span></div>
+
+</section>
+
+</main>
+
+<script>
+
+const sidebar=document.getElementById("sidebar")
+const overlay=document.getElementById("overlay")
+const openBtn=document.getElementById("openMenu")
+const closeBtn=document.getElementById("closeMenu")
+
+function openMenu(){
+sidebar.classList.add("is-open")
+overlay.classList.add("is-open")
+overlay.hidden=false
+}
+
+function closeMenu(){
+sidebar.classList.remove("is-open")
+overlay.classList.remove("is-open")
+overlay.hidden=true
+}
+
+openBtn.onclick=openMenu
+closeBtn.onclick=closeMenu
+overlay.onclick=closeMenu
+
+</script>
+
+</body>
+</html>
