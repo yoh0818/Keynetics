@@ -13,7 +13,7 @@
 
 /* MAIN */
 main{
-  min-height:calc(100dvh - 72px);
+  min-height:calc(100dvh - 73px);
   display:flex;
   align-items:center;
   justify-content:center;
@@ -25,6 +25,7 @@ main{
   gap:18px;
   flex-wrap:wrap;
   justify-content:center;
+  align-items:center;
   width:100%;
 }
 
@@ -73,11 +74,13 @@ main{
   color:#3F75E0;
 }
 
-/* Mobile */
+/* Tablet + Mobile */
 @media (max-width: 768px){
   main{
-    padding:28px 14px 40px;
-    align-items:flex-start;
+    min-height:calc(100dvh - 73px);
+    padding:24px 14px;
+    align-items:center;
+    justify-content:center;
   }
 
   .level-row{
@@ -93,7 +96,8 @@ main{
 
 @media (max-width: 480px){
   main{
-    padding:22px 12px 32px;
+    min-height:calc(100dvh - 73px);
+    padding:20px 12px;
   }
 
   .level-row{
@@ -170,7 +174,7 @@ main{
 
 <header class="topbar">
   <div class="topbar__inner">
-    <button class="hamburger" id="openMenu" aria-label="Open menu">
+    <button class="hamburger" id="openMenu" aria-label="Open menu" aria-expanded="false">
       <span class="hamburger__icon">☰</span>
     </button>
 
@@ -188,29 +192,6 @@ main{
   </section>
 </main>
 
-<script>
-const sidebar = document.getElementById('sidebar');
-const overlay = document.getElementById('overlay');
-const openBtn = document.getElementById('openMenu');
-const closeBtn = document.getElementById('closeMenu');
-
-function openMenu(){
-  sidebar.classList.add('is-open');
-  overlay.classList.add('is-open');
-  overlay.hidden = false;
-  sidebar.setAttribute('aria-hidden', 'false');
-}
-
-function closeMenu(){
-  sidebar.classList.remove('is-open');
-  overlay.classList.remove('is-open');
-  overlay.hidden = true;
-  sidebar.setAttribute('aria-hidden', 'true');
-}
-
-openBtn.onclick = openMenu;
-closeBtn.onclick = closeMenu;
-overlay.onclick = closeMenu;
-</script>
+<script src="app.js"></script>
 </body>
 </html>
