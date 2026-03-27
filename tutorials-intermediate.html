@@ -8,150 +8,180 @@
 
 <style>
 
-
-
-.tutorial-page{
-  max-width:1100px;
-  margin:0 auto;
-  padding:40px 16px 80px;
+html{
+scrollbar-gutter:stable;
 }
 
-/* HEADER */
+body{
+position:relative;
+overflow-y:scroll;
+}
+
+/* Keyframe Design */
+
+.bg-svg{
+position:fixed;
+pointer-events:none;
+opacity:.2;
+z-index:0;
+}
+
+.bg-svg.top-right{
+top:0;
+right:0;
+width:600px;
+transform:translate(80px, -100px);
+}
+
+.bg-svg.bottom-left{
+bottom:0;
+left:0;
+width:600px;
+transform:translate(-100px, 100px);
+}
+
+.tutorial-page{
+max-width:1100px;
+margin:0 auto;
+padding:40px 16px 80px;
+position:relative;
+z-index:1;
+}
+
+
 
 .tutorial-header{
-  width:min(900px,100%);
-  margin:0 auto 28px;
-  border:1px solid var(--line);
-  background:var(--panel);
-  border-radius:var(--radius);
-  padding:40px;
+width:min(900px,100%);
+margin:0 auto 28px;
+border:1px solid var(--line);
+background:var(--panel);
+border-radius:var(--radius);
+padding:40px;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
 }
 
 .tutorial-header h1{
-  margin:0 0 12px;
-  font-size:clamp(32px,4vw,46px);
+margin:0;
+font-size:clamp(32px,4vw,46px);
+color:#3F75E0;
+text-align:center;
 }
 
-.tutorial-header p{
-  margin:0;
-  color:var(--muted);
-  font-size:16px;
-}
-
-/* GRID  */
 
 .video-grid{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:16px;
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:16px;
 }
-
-
 
 .video-card{
-  aspect-ratio:1/1;
-  background:#f2f2f2;
-  border:1px solid #dcdcdc;
-  border-radius:16px;
-  position:relative;
-  overflow:hidden;
+text-decoration:none;
+color:black;
+text-align:center;
 }
 
-/* X Icon */
-
-.video-card::before,
-.video-card::after{
-  content:"";
-  position:absolute;
-  top:50%;
-  left:50%;
-  width:100%;
-  height:2px;
-  background:#cfcfcf;
-  opacity:.6;
+.video-thumb{
+aspect-ratio:1/1;
+background:#f2f2f2;
+border:1px solid #dcdcdc;
+border-radius:16px;
+position:relative;
+overflow:hidden;
 }
 
-.video-card::before{
-  transform:translate(-50%,-50%) rotate(45deg);
+.video-thumb img{
+width:100%;
+height:100%;
+object-fit:cover;
+display:block;
 }
-
-.video-card::after{
-  transform:translate(-50%,-50%) rotate(-45deg);
-}
-
-
 
 .video-label{
-  position:absolute;
-  left:10px;
-  bottom:10px;
-  font-size:12px;
-  color:#666;
-  background:#ffffffcc;
-  border:1px solid #ddd;
-  padding:3px 7px;
-  border-radius:999px;
+position:absolute;
+left:10px;
+bottom:10px;
+font-size:12px;
+color:#666;
+background:#ffffffcc;
+border:1px solid #ddd;
+padding:3px 7px;
+border-radius:999px;
+}
+
+.video-title{
+margin-top:8px;
+font-size:14px;
+line-height:1.4;
+text-align:center;
 }
 
 /* MENU ICONS */
 
 .nav-with-icon{
-  display:flex;
-  align-items:center;
-  gap:8px;
+display:flex;
+align-items:center;
+gap:8px;
 }
 
 .nav-icon{
-  width:9px !important;
-  height:9px !important;
-  min-width:9px !important;
-  min-height:9px !important;
-  max-width:9px !important;
-  max-height:9px !important;
-  object-fit:contain;
-  flex:0 0 9px !important;
-  display:block;
-  opacity:.75;
-  transform:translateY(1px);
+width:9px !important;
+height:9px !important;
+min-width:9px !important;
+min-height:9px !important;
+max-width:9px !important;
+max-height:9px !important;
+object-fit:contain;
+flex:0 0 9px !important;
+display:block;
+opacity:.75;
+transform:translateY(1px);
 }
 
 .nav-icon-spacer{
-  width:9px;
-  height:9px;
-  flex:0 0 9px;
-  display:block;
+width:9px;
+height:9px;
+flex:0 0 9px;
+display:block;
 }
 
-
 .hamburger{
-  padding:0;
+padding:0;
 }
 
 .hamburger__icon{
-  font-size:18px;
-  line-height:1;
-  transform:translateY(-1px);
-  display:block;
+font-size:18px;
+line-height:1;
+transform:translateY(-1px);
+display:block;
+color:#3F75E0;
 }
 
-
+.brand strong{
+color:#3F75E0;
+}
 
 @media(max-width:900px){
-  .video-grid{
-    grid-template-columns:repeat(3,1fr);
-  }
+.video-grid{
+grid-template-columns:repeat(3,1fr);
+}
 }
 
 @media(max-width:600px){
-  .video-grid{
-    grid-template-columns:repeat(2,1fr);
-  }
+.video-grid{
+grid-template-columns:repeat(2,1fr);
+}
 }
 
 </style>
 </head>
 
 <body>
+
+<img src="1(storke).svg" class="bg-svg top-right">
+<img src="1(storke).svg" class="bg-svg bottom-left">
 
 <div class="overlay" id="overlay" hidden></div>
 
@@ -174,28 +204,28 @@
 
 <li>
 <a href="tutorials.html" class="nav-with-icon">
-<img src="1.svg" class="nav-icon" alt="">
+<img src="1.svg" class="nav-icon">
 <span>After Effects Tutorials</span>
 </a>
 </li>
 
 <li>
 <a href="plugins.html" class="nav-with-icon">
-<img src="2.svg" class="nav-icon" alt="">
+<img src="2.svg" class="nav-icon">
 <span>Useful Plugins/Scripts</span>
 </a>
 </li>
 
 <li>
 <a href="quiz.html" class="nav-with-icon">
-<img src="3.svg" class="nav-icon" alt="">
+<img src="3.svg" class="nav-icon">
 <span>Quiz</span>
 </a>
 </li>
 
 <li>
 <a href="artists.html" class="nav-with-icon">
-<img src="4.svg" class="nav-icon" alt="">
+<img src="4.svg" class="nav-icon">
 <span>Motion Graphics Artists/Company</span>
 </a>
 </li>
@@ -224,84 +254,131 @@
 <main class="tutorial-page">
 
 <section class="tutorial-header">
-
 <h1>Intermediate Tutorials</h1>
-
-<p>
-These squares will be replaced with real tutorial videos later.
-</p>
-
 </section>
 
 <section class="video-grid">
 
-<div class="video-card"><span class="video-label">01</span></div>
-<div class="video-card"><span class="video-label">02</span></div>
-<div class="video-card"><span class="video-label">03</span></div>
-<div class="video-card"><span class="video-label">04</span></div>
+<a href="https://www.youtube.com/watch?v=euIDwp4bsi0" target="_blank" class="video-card">
+<div class="video-thumb"><img src="https://img.youtube.com/vi/euIDwp4bsi0/hqdefault.jpg"><span class="video-label">01</span></div>
+<p class="video-title">Fill + Tint + Tritone + CC Toner Effects Explanation</p>
+</a>
 
-<div class="video-card"><span class="video-label">05</span></div>
-<div class="video-card"><span class="video-label">06</span></div>
-<div class="video-card"><span class="video-label">07</span></div>
-<div class="video-card"><span class="video-label">08</span></div>
+<a href="https://www.youtube.com/watch?v=76LQhG-nl_0" target="_blank" class="video-card">
+<div class="video-thumb"><img src="https://img.youtube.com/vi/76LQhG-nl_0/hqdefault.jpg"><span class="video-label">02</span></div>
+<p class="video-title">Hue &amp; Saturation Effect Explanation</p>
+</a>
 
-<div class="video-card"><span class="video-label">09</span></div>
-<div class="video-card"><span class="video-label">10</span></div>
-<div class="video-card"><span class="video-label">11</span></div>
-<div class="video-card"><span class="video-label">12</span></div>
+<a href="https://www.youtube.com/watch?v=nP47ynBc3B8" target="_blank" class="video-card">
+<div class="video-thumb"><img src="https://img.youtube.com/vi/nP47ynBc3B8/hqdefault.jpg"><span class="video-label">03</span></div>
+<p class="video-title">Levels + Curve Effects Explanation</p>
+</a>
 
-<div class="video-card"><span class="video-label">13</span></div>
-<div class="video-card"><span class="video-label">14</span></div>
-<div class="video-card"><span class="video-label">15</span></div>
-<div class="video-card"><span class="video-label">16</span></div>
+<a href="https://www.youtube.com/watch?v=t40ZTEBr_M0" target="_blank" class="video-card">
+<div class="video-thumb"><img src="https://img.youtube.com/vi/t40ZTEBr_M0/hqdefault.jpg"><span class="video-label">04</span></div>
+<p class="video-title">Glow Effect Explanation</p>
+</a>
 
-<div class="video-card"><span class="video-label">17</span></div>
-<div class="video-card"><span class="video-label">18</span></div>
-<div class="video-card"><span class="video-label">19</span></div>
-<div class="video-card"><span class="video-label">20</span></div>
+<a href="https://www.youtube.com/watch?v=N2qxF8V57FE" target="_blank" class="video-card">
+<div class="video-thumb"><img src="https://img.youtube.com/vi/N2qxF8V57FE/hqdefault.jpg"><span class="video-label">05</span></div>
+<p class="video-title">Echo Effect Explanation</p>
+</a>
 
-<div class="video-card"><span class="video-label">21</span></div>
-<div class="video-card"><span class="video-label">22</span></div>
-<div class="video-card"><span class="video-label">23</span></div>
-<div class="video-card"><span class="video-label">24</span></div>
+<a href="https://www.youtube.com/watch?v=1hhA-21q8Xw" target="_blank" class="video-card">
+<div class="video-thumb"><img src="https://img.youtube.com/vi/1hhA-21q8Xw/hqdefault.jpg"><span class="video-label">06</span></div>
+<p class="video-title">Invert Effect Explanation</p>
+</a>
 
-<div class="video-card"><span class="video-label">25</span></div>
-<div class="video-card"><span class="video-label">26</span></div>
-<div class="video-card"><span class="video-label">27</span></div>
-<div class="video-card"><span class="video-label">28</span></div>
+<a href="https://www.youtube.com/watch?v=AbY7V6bJITA" target="_blank" class="video-card">
+<div class="video-thumb"><img src="https://img.youtube.com/vi/AbY7V6bJITA/hqdefault.jpg"><span class="video-label">07</span></div>
+<p class="video-title">Wave Warp Effect Explanation</p>
+</a>
 
-<div class="video-card"><span class="video-label">29</span></div>
-<div class="video-card"><span class="video-label">30</span></div>
-<div class="video-card"><span class="video-label">31</span></div>
-<div class="video-card"><span class="video-label">32</span></div>
+<a href="https://www.youtube.com/watch?v=Iu1E9M1EDHY" target="_blank" class="video-card">
+<div class="video-thumb"><img src="https://img.youtube.com/vi/Iu1E9M1EDHY/hqdefault.jpg"><span class="video-label">08</span></div>
+<p class="video-title">Posterize Time Effect Explanation</p>
+</a>
+
+<a href="https://www.youtube.com/watch?v=pWSNY7XvN-A" target="_blank" class="video-card">
+<div class="video-thumb"><img src="https://img.youtube.com/vi/pWSNY7XvN-A/hqdefault.jpg"><span class="video-label">09</span></div>
+<p class="video-title">Noise HLS Effect Explanation</p>
+</a>
+
+<a href="https://www.youtube.com/watch?v=JhdhSF2ibgQ" target="_blank" class="video-card">
+<div class="video-thumb"><img src="https://img.youtube.com/vi/JhdhSF2ibgQ/hqdefault.jpg"><span class="video-label">10</span></div>
+<p class="video-title">Gradient Ramp Explanation</p>
+</a>
+
+<a href="https://www.youtube.com/watch?v=MfyN1bBe8rE" target="_blank" class="video-card">
+<div class="video-thumb"><img src="https://img.youtube.com/vi/MfyN1bBe8rE/hqdefault.jpg"><span class="video-label">11</span></div>
+<p class="video-title">4-Colour Gradient Effect Explanation</p>
+</a>
+
+<a href="https://www.youtube.com/watch?v=MyEZcFBwloY" target="_blank" class="video-card">
+<div class="video-thumb"><img src="https://img.youtube.com/vi/MyEZcFBwloY/hqdefault.jpg"><span class="video-label">12</span></div>
+<p class="video-title">Fast Box Blur + Gaussian Blur Effects Explanation</p>
+</a>
+
+<a href="https://www.youtube.com/watch?v=5Ug1sVc7uYE" target="_blank" class="video-card">
+<div class="video-thumb"><img src="https://img.youtube.com/vi/5Ug1sVc7uYE/hqdefault.jpg"><span class="video-label">13</span></div>
+<p class="video-title">Grid Effect Explanation</p>
+</a>
+
+<a href="https://www.youtube.com/watch?v=0n0pZp_BA2w" target="_blank" class="video-card">
+<div class="video-thumb"><img src="https://img.youtube.com/vi/0n0pZp_BA2w/hqdefault.jpg"><span class="video-label">14</span></div>
+<p class="video-title">CC Light Sweep Effect Explanation</p>
+</a>
+
+<a href="https://www.youtube.com/watch?v=wjOeQqifBE0" target="_blank" class="video-card">
+<div class="video-thumb"><img src="https://img.youtube.com/vi/wjOeQqifBE0/hqdefault.jpg"><span class="video-label">15</span></div>
+<p class="video-title">How to do 3D Tracking</p>
+</a>
+
+<a href="https://www.youtube.com/watch?v=zkqtTyus5cY" target="_blank" class="video-card">
+<div class="video-thumb"><img src="https://img.youtube.com/vi/zkqtTyus5cY/hqdefault.jpg"><span class="video-label">16</span></div>
+<p class="video-title">How to use the camera</p>
+</a>
+
+<a href="https://www.youtube.com/watch?v=sqyFfIeSIH0" target="_blank" class="video-card">
+<div class="video-thumb"><img src="https://img.youtube.com/vi/sqyFfIeSIH0/hqdefault.jpg"><span class="video-label">17</span></div>
+<p class="video-title">How to use time remapping</p>
+</a>
+
+<a href="https://www.youtube.com/watch?v=eoOIrdb_0ko" target="_blank" class="video-card">
+<div class="video-thumb"><img src="https://img.youtube.com/vi/eoOIrdb_0ko/hqdefault.jpg"><span class="video-label">18</span></div>
+<p class="video-title">How to use roto brush</p>
+</a>
+
+<a href="https://www.youtube.com/watch?v=AcEIT03Mrzk" target="_blank" class="video-card">
+<div class="video-thumb"><img src="https://img.youtube.com/vi/AcEIT03Mrzk/hqdefault.jpg"><span class="video-label">19</span></div>
+<p class="video-title">How to do character animation (rigging)</p>
+</a>
 
 </section>
 
 </main>
 
 <script>
-
 const sidebar=document.getElementById("sidebar")
 const overlay=document.getElementById("overlay")
 const openBtn=document.getElementById("openMenu")
 const closeBtn=document.getElementById("closeMenu")
 
 function openMenu(){
-  sidebar.classList.add("is-open")
-  overlay.classList.add("is-open")
-  overlay.hidden=false
+sidebar.classList.add("is-open")
+overlay.classList.add("is-open")
+overlay.hidden=false
 }
 
 function closeMenu(){
-  sidebar.classList.remove("is-open")
-  overlay.classList.remove("is-open")
-  overlay.hidden=true
+sidebar.classList.remove("is-open")
+overlay.classList.remove("is-open")
+overlay.hidden=true
 }
 
 openBtn.onclick=openMenu
 closeBtn.onclick=closeMenu
 overlay.onclick=closeMenu
-
 </script>
 
 </body>

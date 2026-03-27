@@ -8,7 +8,7 @@
 
 <style>
 
-/* Background */
+
 
 body{
 min-height:100vh;
@@ -17,6 +17,31 @@ radial-gradient(circle at top left,
 rgba(255,255,255,0.95),
 rgba(255,255,255,0.7) 40%,
 rgba(245,245,245,0.9) 100%);
+}
+
+/* Video */
+
+.intro-screen{
+position:fixed;
+inset:0;
+display:flex;
+align-items:center;
+justify-content:center;
+z-index:9999;
+background:#000;
+transition:opacity .6s ease;
+}
+
+.intro-screen video{
+width:100%;
+height:100%;
+object-fit:cover;
+display:block;
+}
+
+.intro-screen.hide{
+opacity:0;
+pointer-events:none;
 }
 
 /* Center */
@@ -28,8 +53,6 @@ align-items:center;
 justify-content:center;
 padding:40px 16px;
 }
-
-
 
 .hero{
 width:min(760px,100%);
@@ -75,8 +98,6 @@ object-fit:contain;
 flex:0 0 16px;
 }
 
-
-
 .hamburger{
 width:44px;
 height:44px;
@@ -100,6 +121,12 @@ transform:translateY(-1px);
 </head>
 
 <body>
+
+<div class="intro-screen" id="intro">
+<video autoplay muted playsinline id="introVideo">
+<source src="Final Intro.mp4" type="video/mp4">
+</video>
+</div>
 
 <div class="overlay" id="overlay" hidden></div>
 
@@ -203,6 +230,13 @@ overlay.hidden=true
 openBtn.onclick=openMenu
 closeBtn.onclick=closeMenu
 overlay.onclick=closeMenu
+
+const intro=document.getElementById("intro")
+const introVideo=document.getElementById("introVideo")
+
+introVideo.onended=()=>{
+intro.classList.add("hide")
+}
 
 </script>
 

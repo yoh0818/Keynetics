@@ -4,206 +4,57 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Keynetics — Quiz</title>
+<link rel="stylesheet" href="styles.css" />
 
 <style>
 :root{
-  --bg:#fff; --text:#111; --muted:#666; --line:#e9e9e9; --panel:#f5f5f5;
-  --shadow:0 12px 30px rgba(0,0,0,.12);
-  --max:1100px; --radius:14px;
+  --quiz-accent:#9B55D8;
 }
 
-*{box-sizing:border-box}
+/* Keyframe Design */
 
-body{
-margin:0;
-font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
-background:var(--bg);
-color:var(--text)
+.bg-svg{
+  position:fixed;
+  pointer-events:none;
+  opacity:.2;
+  z-index:0;
 }
 
-/* TOP */
-
-.topbar{
-position:sticky;
-top:0;
-z-index:9999;
-background:#fff;
-border-bottom:1px solid var(--line)
+.bg-svg.top-right{
+  top:-250px;
+  right:-230px;
+  width:600px;
 }
 
-.topbar__inner{
-max-width:var(--max);
-margin:0 auto;
-padding:14px 16px;
-display:flex;
-align-items:center;
-gap:12px
+.bg-svg.bottom-left{
+  bottom:-300px;
+  left:-150px;
+  width:600px;
 }
 
-.hamburger{
-width:44px;
-height:44px;
-padding:0;
-border:1px solid var(--line);
-border-radius:12px;
-background:#fff;
-cursor:pointer;
-display:flex;
-align-items:center;
-justify-content:center
-}
-
-.hamburger__icon{
-font-size:18px;
-line-height:1;
-transform:translateY(-1px);
-}
-
-.brand strong{
-font-size:14px
-}
-
-/* SIDE */
-
-.overlay{
-position:fixed;
-inset:0;
-background:rgba(0,0,0,.38);
-opacity:0;
-pointer-events:none;
-transition:opacity .18s ease;
-z-index:9998
-}
-
-.overlay.is-open{
-opacity:1;
-pointer-events:auto
-}
-
-.sidebar{
-position:fixed;
-top:0;
-left:0;
-height:100%;
-width:min(340px,88vw);
-background:#fff;
-border-right:1px solid var(--line);
-transform:translateX(-102%);
-transition:transform .2s ease;
-z-index:9999;
-box-shadow:var(--shadow);
-display:flex;
-flex-direction:column
-}
-
-.sidebar.is-open{
-transform:translateX(0)
-}
-
-.sidebar__top{
-padding:16px;
-display:flex;
-align-items:center;
-justify-content:space-between;
-border-bottom:1px solid var(--line)
-}
-
-.closebtn{
-width:40px;
-height:40px;
-border-radius:12px;
-border:1px solid var(--line);
-background:#fff;
-cursor:pointer;
-font-size:18px
-}
-
-nav[aria-label="Primary"]{
-padding:10px 10px 16px
-}
-
-.navlist{
-list-style:none;
-margin:0;
-padding:0;
-display:grid;
-gap:6px
-}
-
-.navlist a{
-display:flex;
-align-items:center;
-gap:8px;
-padding:12px;
-border-radius:12px;
-text-decoration:none;
-color:#111;
-border:1px solid transparent
-}
-
-.navlist a:hover{
-background:#fafafa;
-border-color:var(--line)
-}
-
-.navlist a.is-active{
-background:#fafafa;
-border-color:var(--line);
-font-weight:700
-}
-
-.sidebar__footer{
-margin-top:auto;
-padding:14px 16px;
-border-top:1px solid var(--line);
-font-size:12px;
-color:var(--muted)
-}
-
-/* MENU ICONS */
-
-.nav-icon{
-width:9px !important;
-height:9px !important;
-min-width:9px !important;
-min-height:9px !important;
-max-width:9px !important;
-max-height:9px !important;
-object-fit:contain;
-flex:0 0 9px !important;
-display:block;
-opacity:.75;
-transform:translateY(1px)
-}
-
-.nav-icon-spacer{
-width:9px;
-height:9px;
-flex:0 0 9px;
-display:block
-}
-
-/* QUIZ CARD */
 
 .wrapper{
 min-height:calc(100vh - 72px);
 display:flex;
 align-items:center;
 justify-content:center;
-padding:40px 20px
+padding:40px 20px;
+position:relative;
+z-index:1;
 }
 
 .card{
 width:min(800px,100%);
-background:var(--panel);
-border:1px solid #ddd;
+background:#fff;
+border:1px solid #000;
 border-radius:20px;
 padding:50px
 }
 
 h1{
 margin:0 0 30px;
-font-size:clamp(26px,3vw,34px)
+font-size:clamp(26px,3vw,34px);
+color:#9B55D8;
 }
 
 .option{
@@ -216,16 +67,19 @@ border:1px solid #000;
 background:#fff;
 cursor:pointer;
 font-size:16px;
-transition:.15s
+transition:.15s;
+text-align:left
 }
 
 .option:hover{
-background:#000;
+background:#9B55D8;
+border-color:#9B55D8;
 color:#fff
 }
 
 .option.correct{
-background:#000;
+background:#22c55e;
+border-color:#22c55e;
 color:#fff
 }
 
@@ -234,9 +88,25 @@ background:#ccc
 }
 
 .actions{
-display:flex;
-justify-content:space-between;
-margin-top:40px
+width:100%;
+margin-top:40px;
+display:grid;
+grid-template-columns:1fr auto 1fr;
+align-items:center;
+}
+
+.actions .left{
+justify-self:center;
+transform:translateX(-80px);
+}
+
+.actions .center{
+justify-self:center;
+}
+
+.actions .right{
+justify-self:center;
+transform:translateX(80px);
 }
 
 .btn{
@@ -244,74 +114,124 @@ padding:14px 28px;
 border-radius:12px;
 border:1px solid #000;
 background:#fff;
+color:#111;
 cursor:pointer;
 font-size:15px;
 transition:.15s
 }
 
 .btn:hover{
-background:#000;
+background:#9B55D8;
+border-color:#9B55D8;
 color:#fff
 }
 
+.btn:disabled{
+opacity:.45;
+cursor:default;
+}
+
+.btn:disabled:hover{
+background:#fff;
+color:#111
+}
+
+.progress{
+margin-bottom:18px;
+color:#666;
+font-size:14px
+}
+
+/* nav */
+.nav-with-icon{
+display:flex;
+align-items:center;
+gap:10px;
+}
+
+.nav-icon{
+width:16px;
+height:16px;
+object-fit:contain;
+flex:0 0 16px;
+}
+
+.hamburger{
+width:44px;
+height:44px;
+border:1px solid var(--line);
+border-radius:12px;
+background:#fff;
+cursor:pointer;
+display:flex;
+align-items:center;
+justify-content:center;
+padding:0;
+}
+
+.hamburger__icon{
+font-size:18px;
+line-height:1;
+transform:translateY(-1px);
+color:#9B55D8;
+}
+
+.brand strong{
+color:#9B55D8;
+}
 </style>
 </head>
 
 <body>
 
+
+<img src="3(storke).svg" class="bg-svg top-right">
+<img src="3(storke).svg" class="bg-svg bottom-left">
+
 <div class="overlay" id="overlay" hidden></div>
 
-<aside class="sidebar" id="sidebar">
+<aside class="sidebar" id="sidebar" aria-hidden="true">
 
 <div class="sidebar__top">
 <strong>MENU</strong>
 <button class="closebtn" id="closeMenu">×</button>
 </div>
 
-<nav aria-label="Primary">
-
+<nav>
 <ul class="navlist">
 
-<li>
-<a href="index.html">
-<span class="nav-icon-spacer"></span>
-<span>Home</span>
-</a>
-</li>
+<li><a href="index.html">Home</a></li>
 
 <li>
-<a href="tutorials.html">
+<a href="tutorials.html" class="nav-with-icon">
 <img src="1.svg" class="nav-icon">
 <span>After Effects Tutorials</span>
 </a>
 </li>
 
 <li>
-<a href="plugins.html">
+<a href="plugins.html" class="nav-with-icon">
 <img src="2.svg" class="nav-icon">
 <span>Useful Plugins/Scripts</span>
 </a>
 </li>
 
 <li>
-<a href="quiz.html">
+<a href="quiz.html" class="nav-with-icon">
 <img src="3.svg" class="nav-icon">
 <span>Quiz</span>
 </a>
 </li>
 
 <li>
-<a href="artists.html">
+<a href="artists.html" class="nav-with-icon">
 <img src="4.svg" class="nav-icon">
 <span>Motion Graphics Artists/Company</span>
 </a>
 </li>
 
 </ul>
-
 </nav>
-
-<div class="sidebar__footer">Quiz</div>
 
 </aside>
 
@@ -332,90 +252,141 @@ color:#fff
 </header>
 
 <div class="wrapper">
-
 <div class="card">
 
-<h1>Select the option that is not a feature for controlling speed in After Effects.</h1>
+<div class="progress" id="progress"></div>
+<h1 id="question"></h1>
 
-<button class="option" data-answer="wrong">1. Speed Graph</button>
-<button class="option" data-answer="wrong">2. Value Graph</button>
-<button class="option" data-answer="wrong">3. Keyframe Velocity</button>
-<button class="option" data-answer="correct">4. Keyframe Interpolation</button>
+<div id="options"></div>
 
 <div class="actions">
+  <div class="left">
+    <button class="btn" id="backBtn" onclick="prevQuestion()">Back</button>
+  </div>
 
-<button class="btn" onclick="location.href='index.html'">
-Home Page
-</button>
+  <div class="center">
+    <button class="btn" onclick="restartQuiz()">Restart</button>
+  </div>
 
-<button class="btn" onclick="restartQuiz()">
-Restart
-</button>
-
+  <div class="right">
+    <button class="btn" id="nextBtn" onclick="nextQuestion()">Next</button>
+  </div>
 </div>
 
 </div>
-
 </div>
 
 <script>
-
-const sidebar=document.getElementById('sidebar');
-const overlay=document.getElementById('overlay');
-const openBtn=document.getElementById('openMenu');
-const closeBtn=document.getElementById('closeMenu');
+const sidebar=document.getElementById("sidebar")
+const overlay=document.getElementById("overlay")
+const openBtn=document.getElementById("openMenu")
+const closeBtn=document.getElementById("closeMenu")
 
 function openMenu(){
-sidebar.classList.add('is-open');
-overlay.classList.add('is-open');
-overlay.hidden=false;
+sidebar.classList.add("is-open")
+overlay.classList.add("is-open")
+overlay.hidden=false
 }
 
 function closeMenu(){
-sidebar.classList.remove('is-open');
-overlay.classList.remove('is-open');
-overlay.hidden=true;
+sidebar.classList.remove("is-open")
+overlay.classList.remove("is-open")
+overlay.hidden=true
 }
 
-openBtn.onclick=openMenu;
-closeBtn.onclick=closeMenu;
-overlay.onclick=closeMenu;
+openBtn.onclick=openMenu
+closeBtn.onclick=closeMenu
+overlay.onclick=closeMenu
 
-const current=location.pathname.split('/').pop()||'index.html';
+const quizData = [
+{
+question:"Select the option that is not a feature for controlling speed in After Effects.",
+options:["1. Speed Graph","2. Value Graph","3. Keyframe Velocity","4. Keyframe Interpolation"],
+correct:3
+},
+{
+question:"Why do designers use a Null Object?",
+options:["1. To apply color effects","2. To control multiple layers with one controller","3. To export videos faster","4. To reduce file size"],
+correct:1
+},
+{
+question:"What is the purpose of an Adjustment Layer?",
+options:["1. To create 3D objects","2. To apply effects to all layers below it","3. To animate text only","4. To render compositions"],
+correct:1
+},
+{
+question:"What is a Track Matte used for in After Effects?",
+options:["1. To apply color correction","2. To control visibility using another layer’s alpha or luminance","3. To animate text speed","4. To export video"],
+correct:1
+},
+{
+question:"Which keyframe type creates constant speed without easing?",
+options:["1. Easy Ease","2. Bezier","3. Linear","4. Hold"],
+correct:2
+},
+{
+question:"Why might a 3D layer not respond to the camera?",
+options:["1. It has too many effects","2. It is not set as a 3D layer","3. Motion blur is off","4. Opacity is 100%"],
+correct:1
+},
+{
+question:"Which of the following is NOT a shortcut key used to reveal a keyframe property in After Effects?",
+options:["1. P (Position)","2. S (Scale)","3. O (Opacity)","4. R (Rotation)"],
+correct:2
+}
+];
 
-document.querySelectorAll('.navlist a').forEach(a=>{
-if(a.getAttribute('href')===current)
-a.classList.add('is-active');
+let currentQuestion=0;
+let answered=false;
+
+function renderQuestion(){
+const q=quizData[currentQuestion];
+document.getElementById("progress").textContent=`Question ${currentQuestion+1} / ${quizData.length}`;
+document.getElementById("question").textContent=q.question;
+
+const box=document.getElementById("options");
+box.innerHTML="";
+answered=false;
+
+document.getElementById("backBtn").disabled=currentQuestion===0;
+document.getElementById("nextBtn").textContent=currentQuestion===quizData.length-1?"Finish":"Next";
+
+q.options.forEach((opt,i)=>{
+const btn=document.createElement("button");
+btn.className="option";
+btn.textContent=opt;
+btn.onclick=()=>selectAnswer(btn,i);
+box.appendChild(btn);
 });
-
-const options=document.querySelectorAll('.option');
-
-options.forEach(option=>{
-option.addEventListener('click',()=>{
-
-options.forEach(o=>o.disabled=true);
-
-if(option.dataset.answer==="correct"){
-option.classList.add('correct');
 }
 
-else{
-option.classList.add('wrong');
-document.querySelector('[data-answer="correct"]').classList.add('correct');
+function selectAnswer(btn,i){
+if(answered)return;
+answered=true;
+
+const q=quizData[currentQuestion];
+document.querySelectorAll(".option").forEach((b,index)=>{
+b.disabled=true;
+if(index===q.correct)b.classList.add("correct");
+if(index===i&&i!==q.correct)b.classList.add("wrong");
+});
 }
 
-});
-});
+function nextQuestion(){
+currentQuestion=(currentQuestion+1)%quizData.length;
+renderQuestion();
+}
+
+function prevQuestion(){
+if(currentQuestion>0){currentQuestion--;renderQuestion();}
+}
 
 function restartQuiz(){
-
-options.forEach(o=>{
-o.disabled=false;
-o.classList.remove('correct','wrong');
-});
-
+currentQuestion=0;
+renderQuestion();
 }
 
+renderQuestion();
 </script>
 
 </body>

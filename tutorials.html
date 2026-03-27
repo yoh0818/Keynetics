@@ -15,7 +15,7 @@
 *{box-sizing:border-box}
 body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.45}
 
-/* TOP */
+
 .topbar{position:sticky;top:0;z-index:9999;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
 .topbar__inner{max-width:var(--max);margin:0 auto;padding:14px 16px;display:flex;align-items:center;gap:12px}
 .hamburger{
@@ -41,10 +41,15 @@ body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Aria
   text-align:center;
   font-size:18px;
   transform:translateY(-1px);
+  color:#3F75E0; /* 🔥 변경 */
 }
-.brand strong{font-size:14px;letter-spacing:.02em}
+.brand strong{
+  font-size:14px;
+  letter-spacing:.02em;
+  color:#3F75E0; /* 🔥 변경 */
+}
 
-/* SIDE */
+
 .overlay{position:fixed;inset:0;background:rgba(0,0,0,.38);opacity:0;pointer-events:none;transition:opacity .18s ease;z-index:9998}
 .overlay.is-open{opacity:1;pointer-events:auto}
 .sidebar{position:fixed;top:0;left:0;height:100%;width:min(340px,88vw);background:#fff;border-right:1px solid var(--line);transform:translateX(-102%);transition:transform .2s ease;z-index:9999;box-shadow:var(--shadow);display:flex;flex-direction:column}
@@ -167,7 +172,7 @@ pointer-events:none;
 
 <header class="topbar">
 <div class="topbar__inner">
-<button class="hamburger" id="openMenu" aria-label="Open menu" aria-controls="sidebar" aria-expanded="false">
+<button class="hamburger" id="openMenu">
   <span class="hamburger__icon">☰</span>
 </button>
 <div class="brand">
@@ -177,7 +182,7 @@ pointer-events:none;
 </header>
 
 <main>
-<section class="level-row" aria-label="Choose tutorial level">
+<section class="level-row">
 <a class="pill-link" href="tutorials-beginner.html"><span>Beginner</span></a>
 <a class="pill-link" href="tutorials-intermediate.html"><span>Intermediate</span></a>
 <a class="pill-link" href="tutorials-advanced.html"><span>Advanced</span></a>

@@ -8,15 +8,47 @@
 
 <style>
 
+html{
+scrollbar-gutter:stable;
+}
 
+body{
+position:relative;
+overflow-y:scroll;
+}
+
+/* Keyframe Design */
+
+.bg-svg{
+position:fixed;
+pointer-events:none;
+opacity:.2;
+z-index:0;
+}
+
+.bg-svg.top-right{
+top:0;
+right:0;
+width:600px;
+transform:translate(80px, -100px);
+}
+
+.bg-svg.bottom-left{
+bottom:0;
+left:0;
+width:600px;
+transform:translate(-100px, 100px);
+}
 
 .tutorial-page{
 max-width:1100px;
 margin:0 auto;
 padding:40px 16px 80px;
+position:relative;
+z-index:1;
 }
 
-/* HEADER */
+
 
 .tutorial-header{
 width:min(900px,100%);
@@ -25,20 +57,20 @@ border:1px solid var(--line);
 background:var(--panel);
 border-radius:var(--radius);
 padding:40px;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
 }
 
 .tutorial-header h1{
-margin:0 0 12px;
-font-size:clamp(32px,4vw,46px);
-}
-
-.tutorial-header p{
 margin:0;
-color:var(--muted);
-font-size:16px;
+font-size:clamp(32px,4vw,46px);
+color:#3F75E0;
+text-align:center;
 }
 
-/* GRID */
+
 
 .video-grid{
 display:grid;
@@ -46,9 +78,13 @@ grid-template-columns:repeat(4,1fr);
 gap:16px;
 }
 
-
-
 .video-card{
+text-decoration:none;
+color:black;
+text-align:center;
+}
+
+.video-thumb{
 aspect-ratio:1/1;
 background:#f2f2f2;
 border:1px solid #dcdcdc;
@@ -57,29 +93,12 @@ position:relative;
 overflow:hidden;
 }
 
-/* X Icon */
-
-.video-card::before,
-.video-card::after{
-content:"";
-position:absolute;
-top:50%;
-left:50%;
+.video-thumb img{
 width:100%;
-height:2px;
-background:#cfcfcf;
-opacity:.6;
+height:100%;
+object-fit:cover;
+display:block;
 }
-
-.video-card::before{
-transform:translate(-50%,-50%) rotate(45deg);
-}
-
-.video-card::after{
-transform:translate(-50%,-50%) rotate(-45deg);
-}
-
-
 
 .video-label{
 position:absolute;
@@ -93,7 +112,14 @@ padding:3px 7px;
 border-radius:999px;
 }
 
-/* MENU ICONS  */
+.video-title{
+margin-top:8px;
+font-size:14px;
+line-height:1.4;
+text-align:center;
+}
+
+/* MENU ICONS */
 
 .nav-with-icon{
 display:flex;
@@ -122,8 +148,6 @@ flex:0 0 9px;
 display:block;
 }
 
-
-
 .hamburger{
 padding:0;
 }
@@ -133,30 +157,32 @@ font-size:18px;
 line-height:1;
 transform:translateY(-1px);
 display:block;
+color:#3F75E0;
 }
 
-
+.brand strong{
+color:#3F75E0;
+}
 
 @media(max-width:900px){
-
 .video-grid{
 grid-template-columns:repeat(3,1fr);
 }
-
 }
 
 @media(max-width:600px){
-
 .video-grid{
 grid-template-columns:repeat(2,1fr);
 }
-
 }
 
 </style>
 </head>
 
 <body>
+
+<img src="1(storke).svg" class="bg-svg top-right">
+<img src="1(storke).svg" class="bg-svg bottom-left">
 
 <div class="overlay" id="overlay" hidden></div>
 
@@ -168,7 +194,6 @@ grid-template-columns:repeat(2,1fr);
 </div>
 
 <nav>
-
 <ul class="navlist">
 
 <li>
@@ -207,7 +232,6 @@ grid-template-columns:repeat(2,1fr);
 </li>
 
 </ul>
-
 </nav>
 
 </aside>
@@ -231,63 +255,66 @@ grid-template-columns:repeat(2,1fr);
 <main class="tutorial-page">
 
 <section class="tutorial-header">
-
 <h1>Beginner Tutorials</h1>
-
-<p>
-These squares will be replaced with real tutorial videos later.
-</p>
-
 </section>
 
 <section class="video-grid">
 
-<div class="video-card"><span class="video-label">01</span></div>
-<div class="video-card"><span class="video-label">02</span></div>
-<div class="video-card"><span class="video-label">03</span></div>
-<div class="video-card"><span class="video-label">04</span></div>
+<a href="https://www.youtube.com/watch?v=7lUFluLOh-s" target="_blank" class="video-card">
+<div class="video-thumb"><img src="https://img.youtube.com/vi/7lUFluLOh-s/hqdefault.jpg"><span class="video-label">01</span></div>
+<p class="video-title">Frame Rate Explanation</p>
+</a>
 
-<div class="video-card"><span class="video-label">05</span></div>
-<div class="video-card"><span class="video-label">06</span></div>
-<div class="video-card"><span class="video-label">07</span></div>
-<div class="video-card"><span class="video-label">08</span></div>
+<a href="https://www.youtube.com/watch?v=ykjyNeuQROU" target="_blank" class="video-card">
+<div class="video-thumb"><img src="https://img.youtube.com/vi/ykjyNeuQROU/hqdefault.jpg"><span class="video-label">02</span></div>
+<p class="video-title">Drop Frame / Non Drop Frame Explanation</p>
+</a>
 
-<div class="video-card"><span class="video-label">09</span></div>
-<div class="video-card"><span class="video-label">10</span></div>
-<div class="video-card"><span class="video-label">11</span></div>
-<div class="video-card"><span class="video-label">12</span></div>
+<a href="https://www.youtube.com/watch?v=Wh6NiXu3lqo" target="_blank" class="video-card">
+<div class="video-thumb"><img src="https://img.youtube.com/vi/Wh6NiXu3lqo/hqdefault.jpg"><span class="video-label">03</span></div>
+<p class="video-title">Basic Tools of After Effects</p>
+</a>
 
-<div class="video-card"><span class="video-label">13</span></div>
-<div class="video-card"><span class="video-label">14</span></div>
-<div class="video-card"><span class="video-label">15</span></div>
-<div class="video-card"><span class="video-label">16</span></div>
+<a href="https://www.youtube.com/watch?v=obrJsorx6Ps" target="_blank" class="video-card">
+<div class="video-thumb"><img src="https://img.youtube.com/vi/obrJsorx6Ps/hqdefault.jpg"><span class="video-label">04</span></div>
+<p class="video-title">Position, Scale, Rotation, Opacity Explanation</p>
+</a>
 
-<div class="video-card"><span class="video-label">17</span></div>
-<div class="video-card"><span class="video-label">18</span></div>
-<div class="video-card"><span class="video-label">19</span></div>
-<div class="video-card"><span class="video-label">20</span></div>
+<a href="https://www.youtube.com/watch?v=seAx5WnCZPI" target="_blank" class="video-card">
+<div class="video-thumb"><img src="https://img.youtube.com/vi/seAx5WnCZPI/hqdefault.jpg"><span class="video-label">05</span></div>
+<p class="video-title">Basic Explanation of Keyframe</p>
+</a>
 
-<div class="video-card"><span class="video-label">21</span></div>
-<div class="video-card"><span class="video-label">22</span></div>
-<div class="video-card"><span class="video-label">23</span></div>
-<div class="video-card"><span class="video-label">24</span></div>
+<a href="https://www.youtube.com/watch?v=0TSBWdAtziU" target="_blank" class="video-card">
+<div class="video-thumb"><img src="https://img.youtube.com/vi/0TSBWdAtziU/hqdefault.jpg"><span class="video-label">06</span></div>
+<p class="video-title">Keyframe Basic on After Effects</p>
+</a>
 
-<div class="video-card"><span class="video-label">25</span></div>
-<div class="video-card"><span class="video-label">26</span></div>
-<div class="video-card"><span class="video-label">27</span></div>
-<div class="video-card"><span class="video-label">28</span></div>
+<a href="https://www.youtube.com/watch?v=ssSu55Vvl7Y" target="_blank" class="video-card">
+<div class="video-thumb"><img src="https://img.youtube.com/vi/ssSu55Vvl7Y/hqdefault.jpg"><span class="video-label">07</span></div>
+<p class="video-title">Speed Graph Explanation</p>
+</a>
 
-<div class="video-card"><span class="video-label">29</span></div>
-<div class="video-card"><span class="video-label">30</span></div>
-<div class="video-card"><span class="video-label">31</span></div>
-<div class="video-card"><span class="video-label">32</span></div>
+<a href="https://www.youtube.com/watch?v=qqEg3_713wY" target="_blank" class="video-card">
+<div class="video-thumb"><img src="https://img.youtube.com/vi/qqEg3_713wY/hqdefault.jpg"><span class="video-label">08</span></div>
+<p class="video-title">Value Graph Explanation</p>
+</a>
+
+<a href="https://www.youtube.com/watch?v=zgbXGqYMxq4" target="_blank" class="video-card">
+<div class="video-thumb"><img src="https://img.youtube.com/vi/zgbXGqYMxq4/hqdefault.jpg"><span class="video-label">09</span></div>
+<p class="video-title">Alpha Matte Explanation</p>
+</a>
+
+<a href="https://www.youtube.com/watch?v=ltrGC0kDFic" target="_blank" class="video-card">
+<div class="video-thumb"><img src="https://img.youtube.com/vi/ltrGC0kDFic/hqdefault.jpg"><span class="video-label">10</span></div>
+<p class="video-title">Luma Matte Explanation</p>
+</a>
 
 </section>
 
 </main>
 
 <script>
-
 const sidebar=document.getElementById("sidebar")
 const overlay=document.getElementById("overlay")
 const openBtn=document.getElementById("openMenu")
@@ -308,7 +335,6 @@ overlay.hidden=true
 openBtn.onclick=openMenu
 closeBtn.onclick=closeMenu
 overlay.onclick=closeMenu
-
 </script>
 
 </body>
